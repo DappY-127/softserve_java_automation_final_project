@@ -29,14 +29,8 @@ jobs:
       - name: Generate Allure report
         run: mvn allure:report
 
-      - name: Configure Git
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
       - name: Deploy Allure report to GH Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: mshick/add-allure-to-gh-pages@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/site/allure-maven-plugin
-          publish_branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+

@@ -29,8 +29,10 @@ jobs:
       - name: Generate Allure report
         run: mvn allure:report
 
-      - name: Deploy Allure report to GH Pages
-        uses: mshick/add-allure-to-gh-pages@v2
+      - name: Push changes to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/allure-maven-plugin
+          publish_branch: gh-pages
 
